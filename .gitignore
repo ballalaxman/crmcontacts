@@ -1,0 +1,16 @@
+# Safety net for the whole repo; backend/ and frontend/ also have their own .gitignore.
+node_modules/
+dist/
+*.log
+
+# Secrets: only the examples are committed.
+.env
+.env.*
+!.env.example
+
+# Local MongoDB data from `npm run db:start`
+backend/.data/
+
+# OS files
+.DS_Store
+Thumbs.db

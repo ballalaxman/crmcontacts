@@ -1,0 +1,158 @@
+/*
+ * Design tokens. Every colour, size, radius, shadow, layer and timing in the app comes from here.
+ * Components never use raw values, so a change here restyles the whole app consistently.
+ *
+ * Breakpoints can't be variables inside @media, so they are fixed numbers used everywhere:
+ *   compact: < 768px (phones)   wide: >= 1024px (desktop)
+ * The same numbers live in src/lib/breakpoints.ts for JavaScript.
+ */
+:root {
+  color-scheme: light dark;
+
+  /* Colour: surfaces */
+  --color-bg: #f5f6f8;
+  --color-surface: #ffffff;
+  --color-surface-sunken: #eff1f4;
+  --color-surface-hover: #f2f4f7;
+  --color-border: #dde1e8;
+  --color-border-strong: #c3c9d4;
+  /* Edges of inputs and checkboxes: >= 3:1 against the surface (WCAG 1.4.11 non-text contrast). */
+  --color-border-control: #858e9e;
+  --color-overlay: rgb(12 17 27 / 0.55);
+
+  /* Colour: text (all pairs measured >= 4.5:1 on bg, surface and surface-sunken) */
+  --color-text: #1b1f27;
+  --color-text-muted: #576173;
+  --color-text-inverse: #f5f6f8;
+
+  /* Colour: accent and status */
+  --color-accent: #3451d1;
+  --color-accent-hover: #2a43b4;
+  --color-accent-contrast: #ffffff;
+  --color-accent-soft: #e6ebff;
+  --color-accent-soft-text: #2a3f9e;
+  --color-danger: #b42318;
+  --color-danger-hover: #951c13;
+  --color-danger-soft: #fdecea;
+  --color-warning: #8a4b00;
+  --color-warning-soft: #fff3e0;
+  --color-success: #1e6b34;
+  --color-success-soft: #e7f5ea;
+  --color-info: #1d5aa8;
+  --color-info-soft: #e7f0fc;
+  --color-focus: #3451d1;
+
+  /* Spacing: 4px scale */
+  --space-0: 0;
+  --space-1: 4px;
+  --space-2: 8px;
+  --space-3: 12px;
+  --space-4: 16px;
+  --space-5: 20px;
+  --space-6: 24px;
+  --space-8: 32px;
+  --space-10: 40px;
+  --space-12: 48px;
+  --space-16: 64px;
+
+  /* Typography */
+  --font-sans: system-ui, -apple-system, 'Segoe UI', Roboto, 'Helvetica Neue', sans-serif;
+  --text-xs: 0.75rem;
+  --text-sm: 0.875rem;
+  --text-md: 0.9375rem;
+  --text-lg: 1.0625rem;
+  --text-xl: 1.25rem;
+  --text-2xl: clamp(1.375rem, 1.15rem + 0.9vw, 1.75rem);
+  --leading-tight: 1.25;
+  --leading-normal: 1.5;
+  --weight-regular: 400;
+  --weight-medium: 500;
+  --weight-semibold: 600;
+  --weight-bold: 700;
+  --tracking-caps: 0.04em;
+
+  /* Shape */
+  --radius-sm: 4px;
+  --radius-md: 8px;
+  --radius-lg: 12px;
+  --radius-full: 999px;
+  --border-width: 1px;
+
+  /* Elevation */
+  --shadow-sm: 0 1px 2px rgb(16 24 40 / 0.06), 0 1px 3px rgb(16 24 40 / 0.08);
+  --shadow-md: 0 4px 12px rgb(16 24 40 / 0.12);
+  --shadow-lg: 0 20px 48px rgb(16 24 40 / 0.28);
+  --focus-ring: 0 0 0 2px var(--color-surface), 0 0 0 4px var(--color-focus);
+
+  /* Layers */
+  --z-sticky: 10;
+  --z-popover: 20;
+  --z-overlay: 100;
+  --z-toast: 200;
+  --z-skip-link: 300;
+
+  /* Motion */
+  --duration-fast: 120ms;
+  --duration-base: 180ms;
+  --ease-standard: cubic-bezier(0.2, 0, 0, 1);
+
+  /* Sizing */
+  --control-height: 40px;
+  --control-height-sm: 32px;
+  --icon-sm: 16px;
+  --icon-md: 20px;
+  --content-max: 1200px;
+  --page-gutter: clamp(var(--space-4), 3vw, var(--space-8));
+}
+
+/* Bigger touch targets where the pointer is a finger. */
+@media (pointer: coarse) {
+  :root {
+    --control-height: 44px;
+    --control-height-sm: 40px;
+  }
+}
+
+@media (prefers-color-scheme: dark) {
+  :root {
+    --color-bg: #111419;
+    --color-surface: #191d24;
+    --color-surface-sunken: #14181e;
+    --color-surface-hover: #212631;
+    --color-border: #2c3240;
+    --color-border-strong: #3d4556;
+    --color-border-control: #6b7588;
+    --color-overlay: rgb(0 0 0 / 0.6);
+
+    --color-text: #e7eaf0;
+    --color-text-muted: #9aa4b5;
+    --color-text-inverse: #111419;
+
+    --color-accent: #7b93ff;
+    --color-accent-hover: #95a8ff;
+    --color-accent-contrast: #0d1222;
+    --color-accent-soft: #232c4d;
+    --color-accent-soft-text: #c3cdff;
+    --color-danger: #ff8a80;
+    --color-danger-hover: #ffa69e;
+    --color-danger-soft: #3a1d1d;
+    --color-warning: #ffbd66;
+    --color-warning-soft: #352713;
+    --color-success: #6fd88b;
+    --color-success-soft: #15291b;
+    --color-info: #8cbcff;
+    --color-info-soft: #172437;
+    --color-focus: #95a8ff;
+
+    --shadow-sm: none;
+    --shadow-md: 0 4px 16px rgb(0 0 0 / 0.45);
+    --shadow-lg: 0 20px 48px rgb(0 0 0 / 0.6);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  :root {
+    --duration-fast: 0ms;
+    --duration-base: 0ms;
+  }
+}
